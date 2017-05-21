@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cash Register</title>
+<meta charset="utf-8"><link rel="stylesheet" type="text/css" href="../css/cashRegisterStyles.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Slabo+27px" rel="stylesheet">
+</head>
+<body>
+<h1>Cash Register Javascript Program</h1>
+<nav></nav>
+<section>
+<h2>Welcome to Scott's store</h2>
+<p>What would you like to purchase today?</p>
+
+<form id="shoppingForm">
+<table id="orderForm">
+      <th>
+        <span>Item</span>
+      </th>
+      <th>
+        <span>Quantity</span>
+      </th>
+      <th>
+        <span>Price</span>
+      </th>
+    <tr>
+      <td>
+        <span>Eggs</span>
+      </td>
+      <td>
+        <input type="text" id="eggsQty">
+      </td>
+      <td>
+        <span id="eggsCost">0.98</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>Milk</span>
+      </td>
+      <td>
+        <input type="text" id="milkQty">
+      </td>
+      <td>
+        <span id="milkCost">1.23</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>Magazines</span>
+      </td>
+      <td>
+        <input type="text" id="magazinesQty">
+      </td>
+      <td>
+        <span id="magazinesCost">4.99</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>Chocolate</span>
+      </td>
+      <td>
+        <input type="text" id="chocolateQty">
+      </td>
+      <td>
+        <span id="chocolateCost">0.45</span>
+      </td>
+    </tr>
+    </table>
+<input type="button" onClick="cashRegister.scan()" value="Save total">
+
+</section>
+
+<h3>Who is purchasing today?</h3>
+<p><input type="button" onclick="showBill()" value="Show Bill"></p>
+<p><input type="button" id="StaffMember" value="Staff Member" onclick="showStaff()"></p>
+<div id="staffMembers" style="display:none">
+  <p>Which staff member?</p>
+  <input type="radio" name="staff" value="Bob" id="bob">Bob<br>
+  <input type="radio" name="staff" value="Susan" id="susan">Susan<br>
+  <input type="radio" name="staff" value="Scott" id="scott">Scott<br>
+  <input type="button" id="staffDiscount" onclick="applyStaffDiscount()" value="Apply staff discount">
+</div>
+
+<h3>Your total for today is:</h3><span id="totalOutput"></span>
+
+<h3>Your transaction history is:</h3><span id="receipt"></span>
+
+
+<input type="button" onclick="voidLastTransaction()" value="Void Last Transaction">
+
+</section>
+<script src="../js/cashRegister.js">
+</script>
+</body>
+</html>
