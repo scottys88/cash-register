@@ -1,3 +1,5 @@
+
+
 function showStaff() {
     var x = document.getElementById('staffMembers');
     if (x.style.display === 'none') {
@@ -9,7 +11,7 @@ function showStaff() {
 }
 
 
-StaffMember = function(){
+var StaffMember = function(){
     this.staffName = document.getElementsByName('staff');
     for (var i=0, len=this.staffName.length; i<len; i++){
     this.staffName[i].onclick = function(){
@@ -31,8 +33,11 @@ StaffMember = function(){
     break;
       }
     }
+    
+    return this.discountPercent;
   }
 }
+
 console.log(StaffMember.discountPercent);
 // //function StaffMember(staffName,discountPercent){
 // //loop to determine which radio button selected for staff
@@ -119,10 +124,10 @@ var cashRegister = {
 
     cashRegister.prototype = StaffMember();
 
-  var applyStaffDiscount = function(){
+var applyStaffDiscount = function(){
   console.log(cashRegister.total);
-  console.log(staffName.discountPercent);
-  cashRegister.total -= (cashRegister.total * StaffMember.discountPercent / 100);
+  console.log(StaffMember());
+  cashRegister.total -= (cashRegister.total * StaffMember() / 100);
 }
 // Create a new method applyStaffDiscount here
 
