@@ -11,65 +11,38 @@ function showStaff() {
 }
 
 
-var StaffMember = function(){
-    this.staffName = document.getElementsByName('staff');
-    for (var i=0, len=this.staffName.length; i<len; i++){
-    this.staffName[i].onclick = function(){
-    this.staffName = this.value;
-    console.log(this.staffName);
-    switch(this.staffName){
-    case("Bob"):
-      this.discountPercent = 10;
-      console.log(this.discountPercent);
-      discountPercent = 10;
-    break;
-    case("Susan"):
-      this.discountPercent = 5;
-      console.log(this.discountPercent);
-    break;
-    case("Scott"):
-      this.discountPercent = 20;
-      console.log(this.discountPercent);
-    break;
+var StaffMember = {
+    staffName: this.staffName,
+    getStaffName: function (){
+      var radios = document.getElementsByName('staff');
+      for (var i=0, len= radios.length; i<len; i++){
+        if(radios[i].checked){
+          this.staffName = radios[i].value;
+          break;
+        }
       }
+    },
+      //this.name[i].onclick = function(){
+      //this.name = this.value;
+
+    staffDiscount: this.discountPercent,
+    getStaffDiscount: function(){
+      switch(this.staffName){
+      case("Bob"):
+        this.staffDiscount = 10;
+      break;
+      case("Susan"):
+        this.staffDiscount = 5;
+      break;
+      case("Scott"):
+        this.staffDiscount = 20;
+      break;
+      }
+      return (this.staffDiscount);
     }
-    
-    return this.discountPercent;
-  }
+
+
 }
-
-console.log(StaffMember.discountPercent);
-// //function StaffMember(staffName,discountPercent){
-// //loop to determine which radio button selected for staff
-//     var staffName = document.getElementsByName('staff');
-//     for (var i=0, len=staffName.length; i<len; i++){
-//       staffName[i].onclick = function(){
-//         this.staffName = this.value;
-//         console.log(this.staffName)
-// //switch statement to get percentage discount
-//         switch(this.staffName){
-//           case("Bob"):
-//           this.discountPercent = 10;
-//           console.log(this.discountPercent);
-//           break;
-//           case("Susan"):
-//           this.discountPercent = 5;
-//           console.log(this.discountPercent);
-//           break;
-//           case("Scott"):
-//           this.discountPercent = 20;
-//           console.log(this.discountPercent);
-//           break;
-//       }
-//     }
-//   }
-// }
-
-//var sally = new StaffMember("Sally",5);
-//var bob = new StaffMember("Bob",10);
-//var me = new StaffMember("Me",20);
-// Create yourself again as 'me' with a staff discount of 20%
-
 
 var cashRegister = {
     total:0,
@@ -77,6 +50,8 @@ var cashRegister = {
     add: function(itemCost){
         this.total += (itemCost || 0);
         this.lastTransactionAmount = itemCost;
+        var transactionLog = document.getElementById("receipt");
+        transactionLog.innerHTML=this.lastTransactionAmount.toFixed(2);
     },
     scan: function(item,quantity){
         var eggsQty = document.getElementById("eggsQty").value
@@ -114,7 +89,8 @@ var cashRegister = {
     },
     voidLastTransaction : function(){
         this.total -= this.lastTransactionAmount;
-        this.lastTransactionAmount = 0;
+        console.log("minus last transaction " + this.lastTransactionAmount);
+        showBill();
     },
     // applyStaffDiscount: function(){
     // console.log(this.total);
@@ -122,12 +98,16 @@ var cashRegister = {
     // console.log(StaffMember.discountPercent);
   }
 
-    cashRegister.prototype = StaffMember();
+
 
 var applyStaffDiscount = function(){
-  console.log(cashRegister.total);
-  console.log(StaffMember());
-  cashRegister.total -= (cashRegister.total * StaffMember() / 100);
+  StaffMember.getStaffName();
+  StaffMember.getStaffDiscount();
+  console.log(StaffMember.staffDiscount);
+  cashRegister.total -= (cashRegister.total * StaffMember.staffDiscount / 100);
+  var outputBill = document.getElementById("totalOutput");
+  outputBill.innerHTML = 'Your bill is '+cashRegister.total.toFixed(2)+ " using staff discount from " + StaffMember.staffName;
+  console.log('Your bill is '+cashRegister.total.toFixed(2));
 }
 // Create a new method applyStaffDiscount here
 
@@ -141,6 +121,7 @@ var applyStaffDiscount = function(){
 
 // Show the total bill
 var showBill = function(){
+
   var outputBill = document.getElementById("totalOutput");
   outputBill.innerHTML = 'Your bill is '+cashRegister.total.toFixed(2)
   console.log('Your bill is '+cashRegister.total.toFixed(2));

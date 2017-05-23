@@ -6,6 +6,8 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans|Slabo+27px" rel="stylesheet">
 </head>
 <body>
+  <script src="cashRegister.js">
+  </script>
 <h1>Cash Register Javascript Program</h1>
 <nav></nav>
 <section>
@@ -77,21 +79,24 @@
 <p><input type="button" id="StaffMember" value="Staff Member" onclick="showStaff()"></p>
 <div id="staffMembers" style="display:none">
   <p>Which staff member?</p>
+  <form name="staffNames">
   <input type="radio" name="staff" value="Bob" id="bob">Bob<br>
   <input type="radio" name="staff" value="Susan" id="susan">Susan<br>
   <input type="radio" name="staff" value="Scott" id="scott">Scott<br>
   <input type="button" id="staffDiscount" onclick="applyStaffDiscount()" value="Apply staff discount">
+  <input type="button" id="nameget" onclick="StaffMember.getStaffName()" value="Get staff name">
+</form>
 </div>
 
 <h3>Your total for today is:</h3><span id="totalOutput"></span>
 
-<h3>Your transaction history is:</h3><span id="receipt"></span>
+<h3>Your transaction history is:</h3>
+<span id="receipt"></span>
 
 
-<input type="button" onclick="voidLastTransaction()" value="Void Last Transaction">
+<input type="button" onclick="cashRegister.voidLastTransaction()" value="Void Last Transaction">
 
 </section>
-<script src="cashRegister.js">
-</script>
+
 </body>
 </html>
