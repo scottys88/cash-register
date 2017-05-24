@@ -1,13 +1,20 @@
 
 
 function showStaff() {
-    var x = document.getElementById('staffMembers');
-    if (x.style.display === 'none') {
-        x.style.display = 'block';
-        x.style.display === 'none';
-    } else {
-        x.style.display = 'none';
-    }
+    var passWord = prompt("Please enter staff password");
+    if (passWord == "password"){
+      alert("Password is correct");
+      var x = document.getElementById('staffMembers');
+      if (x.style.display === 'none') {
+          x.style.display = 'block';
+          x.style.display === 'none';
+      } else {
+          x.style.display = 'none';
+      }
+  }
+    else {
+      alert("Password incorrect");
+      }
 }
 
 
@@ -22,9 +29,6 @@ var StaffMember = {
         }
       }
     },
-      //this.name[i].onclick = function(){
-      //this.name = this.value;
-
     staffDiscount: this.discountPercent,
     getStaffDiscount: function(){
       switch(this.staffName){
@@ -40,8 +44,6 @@ var StaffMember = {
       }
       return (this.staffDiscount);
     }
-
-
 }
 
 var cashRegister = {
@@ -54,39 +56,74 @@ var cashRegister = {
         transactionLog.innerHTML=this.lastTransactionAmount.toFixed(2);
     },
     scan: function(item,quantity){
-        var eggsQty = document.getElementById("eggsQty").value
+      var itemQty = document.getElementsByName('item');
+      var outPut = "";
+      this.transactionLog = document.getElementById("receipt");
+      for (var i=0, len= itemQty.length; i<len; i++){
+        if(itemQty[i].value > 0){
+        var eggsQty = document.getElementById("eggsQty").value;
         if (eggsQty > 0){
           item = "eggs";
           console.log(item=="eggs");
           console.log(eggsQty + item);
+          if (item = "eggs"){
+            this.add(eggsQty * 0.98);
+            outPut = outPut + "<br>" + eggsQty + " x " + item + " = " + (eggsQty*0.98);
+          }
         }
-        var milkQty = document.getElementById("milkQty").value
+        var milkQty = document.getElementById("milkQty").value;
         if (milkQty > 0){
           item = "milk";
           console.log(item=="milk");
           console.log(milkQty + item);
+          if (item = "milk"){
+            this.add(milkQty * 1.23);
+            outPut = outPut + "<br>" + milkQty + " x " + item + " = " + (milkQty*1.23);
+          }
         }
-        var magazineQty = document.getElementById("magazinesQty").value
+        var magazineQty = document.getElementById("magazinesQty").value;
         if (magazineQty > 0){
           item = "magazine";
           console.log(item=="magazine");
           console.log(magazineQty + item);
+          if (item = "magazine"){
+            this.add(magazineQty * 4.99);
+            outPut = outPut + "<br>" + magazineQty + " x " + item + " = " + (magazineQty*4.99);
+          }
         }
-        var chocolateQty = document.getElementById("chocolateQty").value
+        var chocolateQty = document.getElementById("chocolateQty").value;
         if (chocolateQty > 0){
           item = "chocolate";
           console.log(item=="chocolate");
           console.log(chocolateQty + item);
+          if (item = "chocolate"){
+            this.add(chocolateQty * 0.45);
+            outPut = outPut + "<br>" + chocolateQty + " x " + item + " = " + (chocolateQty*0.45);
+            break;
+          }
         }
-
-        switch (item){
-        case "eggs": this.add(0.98 * eggsQty); break;
-        case "milk": this.add(1.23 * milkQty); break;
-        case "magazine": this.add(4.99 * magazineQty); break;
-        case "chocolate": this.add(0.45 * chocolateQty); break;
-        }
-        return true;
-    },
+      }
+    }
+    this.transactionLog.innerHTML = outPut;
+  },
+  //       switch (item){
+  //       case "eggs":
+  //       this.add(0.98 * eggsQty);
+  //       break;
+  //       case "milk":
+  //       this.add(1.23 * milkQty);
+  //       break;
+  //       case "magazine":
+  //       this.add(4.99 * magazineQty);
+  //       break;
+  //       case "chocolate":
+  //       this.add(0.45 * chocolateQty);
+  //       break;
+  //       }
+  //       return true;
+  //     }
+  //   }
+  // },
     voidLastTransaction : function(){
         this.total -= this.lastTransactionAmount;
         console.log("minus last transaction " + this.lastTransactionAmount);

@@ -8,9 +8,11 @@
 <body>
   <script src="cashRegister.js">
   </script>
+<header>
 <h1>Cash Register Javascript Program</h1>
-<nav></nav>
+</header>
 <section>
+<div id="orderInput">
 <h2>Welcome to Scott's store</h2>
 <p>What would you like to purchase today?</p>
 
@@ -30,7 +32,7 @@
         <span>Eggs</span>
       </td>
       <td>
-        <input type="text" id="eggsQty">
+        <input type="text" name="item" id="eggsQty">
       </td>
       <td>
         <span id="eggsCost">0.98</span>
@@ -41,7 +43,7 @@
         <span>Milk</span>
       </td>
       <td>
-        <input type="text" id="milkQty">
+        <input type="text" name="item" id="milkQty">
       </td>
       <td>
         <span id="milkCost">1.23</span>
@@ -52,7 +54,7 @@
         <span>Magazines</span>
       </td>
       <td>
-        <input type="text" id="magazinesQty">
+        <input type="text" name="item" id="magazinesQty">
       </td>
       <td>
         <span id="magazinesCost">4.99</span>
@@ -63,38 +65,35 @@
         <span>Chocolate</span>
       </td>
       <td>
-        <input type="text" id="chocolateQty">
+        <input type="text" name="item" id="chocolateQty">
       </td>
       <td>
         <span id="chocolateCost">0.45</span>
       </td>
     </tr>
     </table>
-<input type="button" onClick="cashRegister.scan()" value="Save total">
+<input type="button" class="button" onClick="cashRegister.scan();showBill(); " value="Save and continue.">
+</div>
 
-</section>
-
-<h3>Who is purchasing today?</h3>
-<p><input type="button" onclick="showBill()" value="Show Bill"></p>
-<p><input type="button" id="StaffMember" value="Staff Member" onclick="showStaff()"></p>
+<div id="totals">
+<h3>Your total is:</h3>
+<span id="totalOutput"></span>
+<h3>Your transaction history is:</h3>
+<span id="receipt"></span>
+<input type="button" onclick="cashRegister.voidLastTransaction()" value="Void Last Transaction">
+</div>
+<p><input type="button"  class="button" id="StaffMember" value="Member of staff?" onclick="showStaff()"></p>
 <div id="staffMembers" style="display:none">
-  <p>Which staff member?</p>
+  <h3>Which staff member?</h3>
   <form name="staffNames">
   <input type="radio" name="staff" value="Bob" id="bob">Bob<br>
   <input type="radio" name="staff" value="Susan" id="susan">Susan<br>
   <input type="radio" name="staff" value="Scott" id="scott">Scott<br>
-  <input type="button" id="staffDiscount" onclick="applyStaffDiscount()" value="Apply staff discount">
-  <input type="button" id="nameget" onclick="StaffMember.getStaffName()" value="Get staff name">
+  <input type="button" class="button"  id="staffDiscount" onclick="applyStaffDiscount()" value="Apply staff discount">
 </form>
 </div>
 
-<h3>Your total for today is:</h3><span id="totalOutput"></span>
 
-<h3>Your transaction history is:</h3>
-<span id="receipt"></span>
-
-
-<input type="button" onclick="cashRegister.voidLastTransaction()" value="Void Last Transaction">
 
 </section>
 
