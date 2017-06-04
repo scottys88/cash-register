@@ -17,6 +17,25 @@ function showStaff() {
       }
 }
 
+var itemsForSale = [];
+function groceryItem(name, price, costperKilo, category){
+  this.name = name;
+  this.price = price;
+  this.costperKilo = costperKilo;
+  this.category = category;
+  this.updateItem = function(){
+    var stockTable = document.getElementById("elstocktable");
+    stockTable.innerHTML = "<tr><td>"+this.name+"</td><td>"+this.price+"</td><td>"+this.costperKilo+"</td></tr>";
+}
+}
+var eggs = new groceryItem("eggs", 0.98, 0,"fridge");
+var milk = new groceryItem("milk", 1.23, 0, "dairy");
+var magazine = new groceryItem("magazine", 4.99, 0, "misc");
+var chocolate = new groceryItem("chocolate", 0.45, 0, "confectionary");
+
+console.log(eggs);
+console.log(milk);
+
 
 var StaffMember = {
     staffName: this.staffName,
@@ -136,13 +155,15 @@ var cashRegister = {
             console.log(totalRefund);
             this.total -= totalRefund;
             console.log("minus last transaction " + totalRefund);
+            function myFunction(){
             if(receiptItem.checked){
-              receiptItem.parentNode.removeChild;
+              receiptItem.removeChild(receiptItem.childNodes[i]);
             }
           }
         }
         showBill();
        }
+     }
 
     // applyStaffDiscount: function(){
     // console.log(this.total);
