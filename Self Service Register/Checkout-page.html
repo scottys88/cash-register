@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>JavaScript &amp; jQuery - Chapter 5: Document Object Model - Add Element</title>
+    <link rel="stylesheet" href="c05.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div id="page">
+      <h1 id="header">List</h1>
+      <h2>Buy groceries</h2>
+      <form name="itemsForSale">
+      <ul id="todo">
+        <li id="figs">figs<input type="text" name:"item" value:"figs" size="4"><span class="addCart"></span></li>
+        <li id="pine_nuts">pine nuts <input type="text" name:"item" value:"pine_nuts" size="4"><span class="addCart"></span></li>
+        <li id="honey">honey <input type="text" name:"item" value:"honey" size="4"><span class="addCart"></span></li>
+        <li id="balsamic">balsamic vinegar <input type="text" name:"item" value:"balsamic" size="4"><span class="addCart"></span></li>
+        <li class='cool'><input type ="button" value="Add items to cart" id="addItems"></li>
+      </ul>
+    </form>
+    </div>
+    <div id ="messagePanel">
+      <h2>Your cart</h2>
+      <ul id="order">
+        <li class='cool'>TOTAL: <span id="total"></span><input type ="button" value="Pay Now" class="pay"></li>
+      </ul>
+    </div>
+
+
+    <script src="checkOutPage.js"></script>
+  </body>
+</html>

@@ -1,5 +1,3 @@
-
-
 function showStaff() {
     var passWord = prompt("Please enter staff password");
     if (passWord == "password"){
@@ -169,7 +167,7 @@ var cashRegister = {
     // console.log(this.total);
     // this.total -= (this.total * StaffMember.discountPercent / 100);
     // console.log(StaffMember.discountPercent);
-  }
+}
 
 
 
